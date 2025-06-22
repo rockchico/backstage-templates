@@ -31,7 +31,7 @@ spec:
         orgName:
           title: Organization name
           type: string
-          default: piomin
+          default: rockchico
         appName:
           title: App name
           type: string
@@ -78,7 +78,7 @@ spec:
       name: Publishing to the Source Code Repository
       action: publish:github
       input:
-        allowedHosts: ['github.com']
+        #allowedHosts: ['github.com']
         description: ${{ parameters.description }}
         repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.appName }}
         defaultBranch: ${{ parameters.repoBranchName }}
