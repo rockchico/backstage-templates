@@ -85,7 +85,7 @@ spec:
       name: Publishing to the Source Code Repository
       action: publish:github
       input:
-        allowedHosts: ['github.com']
+        #allowedHosts: ['github.com']
         description: ${{ parameters.description }}
         repoUrl: github.com?owner=${{ parameters.orgName }}&repo=${{ parameters.appName }}
         defaultBranch: ${{ parameters.repoBranchName }}
@@ -119,23 +119,23 @@ spec:
         sourcePath: ./gitops
         repoVisibility: public
 
-    - id: sonarqube
-      name: Follow new project on Sonarcloud
-      action: http:backstage:request
-      input:
-        method: 'POST'
-        path: '/proxy/sonarqube/projects/create?name=${{ parameters.appName }}&organization=${{ parameters.orgName }}&project=${{ parameters.orgName }}_${{ parameters.appName }}'
-        headers:
-          content-type: 'application/json'
+    # - id: sonarqube
+    #   name: Follow new project on Sonarcloud
+    #   action: http:backstage:request
+    #   input:
+    #     method: 'POST'
+    #     path: '/proxy/sonarqube/projects/create?name=${{ parameters.appName }}&organization=${{ parameters.orgName }}&project=${{ parameters.orgName }}_${{ parameters.appName }}'
+    #     headers:
+    #       content-type: 'application/json'
 
-    - id: circleci
-      name: Follow new project on CircleCI
-      action: http:backstage:request
-      input:
-        method: 'POST'
-        path: '/proxy/circleci/api/project/gh/${{ parameters.orgName }}/${{ parameters.appName }}/follow'
-        headers:
-          content-type: 'application/json'
+    # - id: circleci
+    #   name: Follow new project on CircleCI
+    #   action: http:backstage:request
+    #   input:
+    #     method: 'POST'
+    #     path: '/proxy/circleci/api/project/gh/${{ parameters.orgName }}/${{ parameters.appName }}/follow'
+    #     headers:
+    #       content-type: 'application/json'
 
     - id: argocd
       name: Create New Application in Argo CD
